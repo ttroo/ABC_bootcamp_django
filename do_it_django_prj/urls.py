@@ -15,21 +15,15 @@ Including another URLconf
 """
 from http.client import HTTPResponse
 from django.contrib import admin
-from django.urls import path
-
-
-
+from django.urls import path, include
 
 from django.http import HttpResponse
 
 def root(request):
     return HttpResponse("hello django")
 
-from blog import views
-
-
 urlpatterns = [
     path('', root), # 해당주소로 요청이 생기면 이 함수가 처리를 해줄거얌
-    path('blog/', views.index),
+    path('blog/', include('blog.urls')),
     path("admin/", admin.site.urls),
 ]
